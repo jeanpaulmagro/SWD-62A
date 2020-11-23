@@ -33,17 +33,13 @@ namespace Presentation
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<ShoppingCartDbContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
             //Reference to DependencyContainer
-            DepndencyContainer.RegisterServices(services);
+            DepndencyContainer.RegisterServices(services, Configuration.GetConnectionString("DefaultConnection"));
 
         }
 
