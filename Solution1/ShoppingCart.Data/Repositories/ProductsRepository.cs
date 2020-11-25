@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShoppingCart.Data.Repositories
 {
@@ -32,7 +33,7 @@ namespace ShoppingCart.Data.Repositories
 
         public Product GetProduct(Guid id)
         {
-            return _context.Products.SingleOrDefault(x => x.Id == id);
+            return _context.Products.Include(x=>x.Category).SingleOrDefault(x => x.Id == id);
         }
 
         public IQueryable<Product> GetProducts()

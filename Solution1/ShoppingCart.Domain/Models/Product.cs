@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Dynamic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShoppingCart.Domain.Models
 {
@@ -22,7 +23,11 @@ namespace ShoppingCart.Domain.Models
         public string ImageUrl { get; set; }
 
         [Required]
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
+
+        [ForeignKey("Category")]
+
+        public int CategoryId { get; set; }
 
     }
 }

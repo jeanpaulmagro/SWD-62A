@@ -34,5 +34,29 @@ namespace Presentation.Controllers
             var myProduct = _productsService.GetProduct(id);
             return View(myProduct);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public IActionResult Create(ProductViewModel data)
+        {
+            try
+            {
+                _productsService.AddProduct(data);
+
+                ViewData["feedback"] = "Product was added successfully";
+            }
+            catch
+            {
+                ViewData["warning"] = "Product was not added. Check your details";
+
+            }
+            return View();
+        }
     }
 }

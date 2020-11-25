@@ -1,6 +1,7 @@
 ﻿using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.ViewModels;
 using ShoppingCart.Domain.Interfaces;
+using ShoppingCart.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,18 @@ namespace ShoppingCart.Application.Services
             myViewModel.Category.Name = productFromDb.Category.Name;
 
             return myViewModel;
+        }
+
+        public void AddProduct(ProductViewModel data)
+        {
+            Product p = new Product();
+            p.Description = data.Description;
+            p.ImageUrl = data.ImageUrl;
+            p.Name = data.Name;
+            p.Price = data.Price;
+            p.CategoryId = data.Category.Id;
+
+            _productRepo.AddProduct(p);
         }
     }
 }
