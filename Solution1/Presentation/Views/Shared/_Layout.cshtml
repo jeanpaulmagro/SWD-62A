@@ -38,17 +38,17 @@
             @RenderBody()
 
 
-            @if (ViewData["feedback"] != null)
+            @if (TempData["feedback"] != null)
             {
                 <div class="alert alert-primary" role="alert">
-                    @ViewData["feedback"]
+                    @TempData["feedback"]
                 </div>
             }
-            else if (ViewData["warning"] != null)
+            else if (TempData["warning"] != null)
             {
 
                 <div class="alert alert-danger" role="alert">
-                    @ViewData["warning"]
+                    @TempData["warning"]
                 </div>
 
             }

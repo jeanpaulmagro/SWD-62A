@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ShoppingCart.Data.Repositories
 {
-    class CategoriesRepository : ICategoriesRepository
+    public class CategoriesRepository : ICategoriesRepository
     {
         private ShoppingCartDbContext _context;
 

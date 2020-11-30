@@ -12,9 +12,12 @@ namespace Presentation.Controllers
     public class ProductsController : Controller
     {
         private IProductsService _productsService;
-        public ProductsController(IProductsService productsService)
+        private ICategoriesService _categoriesService;
+        public ProductsController(IProductsService productsService,ICategoriesService categoriesService)
         {
             _productsService = productsService;
+            _categoriesService = categoriesService;
+
         }
 
         // Products Catalogue
@@ -38,6 +41,9 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            var catList = _categoriesService.GetCategories();
+
+            ViewBag.Categories = catList;
             return View();
         }
 
@@ -51,12 +57,23 @@ namespace Presentation.Controllers
 
                 ViewData["feedback"] = "Product was added successfully";
             }
-            catch
+            catch (Exception ex)
             {
                 ViewData["warning"] = "Product was not added. Check your details";
 
             }
+            var catList = _categoriesService.GetCategories();
+
+            ViewBag.Categories = catList;
             return View();
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+
+            _productsService.DeleteProduct(id);
+            TempData["warning"] = "Product was Deleted";
+            return RedirectToAction("Index");
         }
     }
 }
