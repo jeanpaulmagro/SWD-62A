@@ -29,5 +29,7 @@ namespace ShoppingCart.Domain.Models
 
         public int CategoryId { get; set; }
 
+
+
     }
 }
