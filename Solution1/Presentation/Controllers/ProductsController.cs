@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             var catList = _categoriesService.GetCategories();
@@ -53,7 +55,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(ProductViewModel data,IFormFile file)
         {
             try

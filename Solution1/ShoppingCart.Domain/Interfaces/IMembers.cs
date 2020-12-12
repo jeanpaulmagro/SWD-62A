@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShoppingCart.Domain.Interfaces
 {
-    public interface IMembers
+    public interface IMembersRepository
     {
         void AddMember(Member m);
     }
